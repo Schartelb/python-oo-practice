@@ -32,3 +32,14 @@ class WordFinder:
     def random(self):
         'returns a random word from word list supplied'
         return choice(self.words)
+
+
+class SpecialWordFinder(WordFinder):
+    '''updated to prevent the selection of blank lines or comments'''
+
+    def __init__(self, filepath):
+        super().__init__(filepath)
+
+    def fixedwordlist(self):
+        self.words = [word for word in super().wordlist() if (
+            word.startswith != "" or word.startswith != "#")]
